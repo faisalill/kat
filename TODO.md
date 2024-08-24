@@ -4,21 +4,23 @@
 
 - [x] **Create a Project Directory**
   - Set up a directory for your shell project.
-- [ ] **Initialize Version Control**
+- [x] **Initialize Version Control**
   - Set up a Git repository to track your changes.
 
 ## 2. Basic Shell Structure
 
-- [ ] **Create a Basic Shell File**
+- [x] **Create a Basic Shell File**
   - Implement a basic `main()` function that starts an infinite loop.
-- [ ] **Display a Prompt**
+- [x] **Display a Prompt**
   - Print a command prompt to the user.
 
 ## 3. Reading User Input
 
-- [ ] **Read Input from the User**
+- [x] **Read Input from the User**
   - Use `fgets()` or `getline()` to read user input from the command line.
-- [ ] **Handle Input Length**
+- [x] **Handle Input Length**
+  - Ensure input is handled correctly even if it’s very long.
+- [x] **Ctrl + c & Ctrl + d functionality**
   - Ensure input is handled correctly even if it’s very long.
 
 ## 4. Parsing Commands
