@@ -6,19 +6,13 @@
 
 #define INPUT_BUFFER_SIZE 1024
 
-void handle_sigint(int sig) {
-  printf("\n SIGINT (Ctrl + c ) Encountered");
-  exit(EXIT_SUCCESS);
-}
-
 int main() {
   const char *username = getenv("USER");
   char hostname[256];
   gethostname(hostname, sizeof(hostname));
 
+  char *args[50];
   char input[INPUT_BUFFER_SIZE];
-
-  signal(SIGINT, handle_sigint);
 
   while (1) {
     printf("%s@%s ~ $ ", username, hostname);
@@ -28,7 +22,7 @@ int main() {
         printf("\n Ctrl + D Encountered Exiting");
         return EXIT_SUCCESS;
       } else {
-        printf("\n Something else encountered");
+        continue;
       }
     }
 
@@ -36,8 +30,25 @@ int main() {
       input[strlen(input) - 1] = '\0';
     }
 
-    if (strcmp(input, "exit") == 0) {
+    char delimiters[] = " ,;";
+    char *token = strtok(input, delimiters);
+
+    int i = 0;
+    while (token != NULL) {
+      args[i++] = token;
+      token = strtok(NULL, delimiters);
+    }
+    args[i] = NULL;
+
+    if (strcmp(args[0], "exit") == 0) {
+      printf("Exiting SHELL");
       return EXIT_SUCCESS;
+    } else {
+      int status = system(args[0]);
+
+      if (status == -1) {
+        perror("System Exec Error");
+      }
     }
   }
   return EXIT_SUCCESS;

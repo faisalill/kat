@@ -1,4 +1,4 @@
-# KAT Roadmap
+# KAT  Roadmap
 
 ## 1. Project Setup
 
@@ -25,9 +25,9 @@
 
 ## 4. Parsing Commands
 
-- [ ] **Tokenize Input**
+- [x] **Tokenize Input**
   - Split the input into tokens using functions like `strtok()`.
-- [ ] **Handle Simple Commands**
+- [x] **Handle Simple Commands**
   - Parse and execute simple commands (e.g., `ls`, `pwd`).
 
 ## 5. Executing Commands
@@ -82,5 +82,7 @@
 
 - [ ] **Implement Job Control**
   - Allow for job control features like background jobs and job listing.
-- [ ] **Add Signal Handling**
+- [x] **Add Signal Handling**
   - Handle signals like SIGINT (Ctrl+C) to interrupt commands.
+- [ ] **Add Color, Background, Foreground, Style Formatting**
+  - Prettify the shell output.
