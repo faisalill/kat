@@ -42,7 +42,7 @@
 
 - [ ] **Implement Built-in Commands**
   - Handle commands like `cd` (change directory) and `exit` within the shell.
-- [ ] **Implement Exit Command**
+- [x] **Implement Exit Command**
   - Exit the shell cleanly when the `exit` command is entered.
 
 ## 7. Redirection and Pipes

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 #define INPUT_BUFFER_SIZE 1024
@@ -19,7 +20,7 @@ int main() {
 
     if (fgets(input, sizeof(input), stdin) == NULL) {
       if (feof(stdin)) {
-        printf("\n Ctrl + D Encountered Exiting");
+        // printf("\n Ctrl + D Encountered Exiting");
         return EXIT_SUCCESS;
       } else {
         continue;
@@ -41,13 +42,23 @@ int main() {
     args[i] = NULL;
 
     if (strcmp(args[0], "exit") == 0) {
-      printf("Exiting SHELL");
+      // printf("Exiting SHELL");
       return EXIT_SUCCESS;
     } else {
-      int status = system(args[0]);
+      pid_t p = fork();
 
-      if (status == -1) {
-        perror("System Exec Error");
+      if (p < 0) {
+        perror("Fork Failed \n");
+        perror("EXITING SHELL \n");
+        exit(EXIT_FAILURE);
+      } else if (p == 0) {
+        execvp(args[0], args);
+
+        perror("execvp failed");
+        return EXIT_FAILURE;
+      } else {
+        int status;
+        waitpid(p, &status, 0);
       }
     }
   }
